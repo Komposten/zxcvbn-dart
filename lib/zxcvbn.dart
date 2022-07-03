@@ -9,6 +9,17 @@ import './src/time_estimates.dart';
 export 'package:zxcvbn/src/result.dart';
 
 class Zxcvbn {
+  final Map<String, List<String>> customDictionaries;
+
+  Zxcvbn({this.customDictionaries = const {}}) {
+    customDictionaries
+        .forEach((name, words) => matching.add_dictionary(name, words));
+  }
+
+  void removeCustomDictionaries() {
+    customDictionaries.keys.forEach((name) => matching.remove_dictionary(name));
+  }
+
   Result evaluate(String password, {List<String> userInputs = const []}) {
     final start = _time;
     List<String> sanitized_inputs =

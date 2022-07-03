@@ -60,5 +60,19 @@ void main() {
       expect(result.score!.round(), 1);
       expect(double.parse(result.guesses_log10.toStringAsFixed(5)), 3.58984);
     });
+    test('pqymeazg with custom dictionary', () {
+      final result1 = zxcvbn.evaluate(r'pqymeazg');
+      final zxcvbn2 = Zxcvbn(customDictionaries: {'custom': ['pqymeazg']});
+      final result2 = zxcvbn.evaluate(r'pqymeazg');
+
+      expect(result1.score!.round(), 2);
+      expect(double.parse(result1.guesses_log10.toStringAsFixed(5)), 8.0);
+
+      expect(result2.score!.round(), 0);
+      expect(double.parse(result2.guesses_log10.toStringAsFixed(5)), 0.30103);
+
+      // Clean-up
+      zxcvbn2.removeCustomDictionaries();
+    });
   });
 }

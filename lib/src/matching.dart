@@ -173,6 +173,14 @@ class matching {
     RANKED_DICTIONARIES['user_inputs'] = build_ranked_dict([...ordered_list]);
   }
 
+  static add_dictionary(String name, List<String> ordered_list) {
+    RANKED_DICTIONARIES[name] = build_ranked_dict([...ordered_list]);
+  }
+
+  static remove_dictionary(String name) {
+    RANKED_DICTIONARIES.remove(name);
+  }
+
   //-------------------------------------------------------------------------------
   // dictionary match with common l33t substitutions ------------------------------
   //-------------------------------------------------------------------------------
